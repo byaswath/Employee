@@ -108,7 +108,7 @@ public class EmployeeService {
 	
 	public Employee getMinSalaryWithBonus() {
 		List<Employee> xx = ed.getAllEmp();
-		Employee minSal = xx.stream().sorted(Comparator.comparing(Employee::getSalary)).findFirst().get();
+		Employee minSal = xx.stream().sorted(Comparator.comparing(Employee::getSalary).thenComparing(Comparator.comparing(Employee::getGender))).findFirst().get();
 		minSal.setSalary(minSal.getSalary()+(minSal.getSalary()*5/100));
 		return minSal;
 		
